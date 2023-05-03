@@ -20,10 +20,10 @@ const createUser = async (req, res) => {
 
     try{
         const createNewUser = await userService.createUser(body);
-        if (createUser.errMessage) {
-            return res.json({ errMessage: tryLogin.errMessage });
+        if (createNewUser.errMessage) {
+            return res.json({ errMessage: createNewUser.errMessage });
         }
-        return res.json({user: createNewUser});
+        return res.json({message: 'User Created'});
     } catch(err) {
         console.log(err);
         return res.status(500).json({error: err});
