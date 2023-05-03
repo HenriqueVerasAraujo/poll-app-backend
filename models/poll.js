@@ -19,23 +19,22 @@ const Poll = (sequelize, DataTypes) => {
       },
       onDelete: 'CASCADE',
     },
-    published: {
+    createdAt: {
       allowNull: false,
-      type:DataTypes.DATE,
-      defaultValue: DataTypes.NOW
+      type: DataTypes.DATE
     },
-    updated: {
+    updatedAt: {
       allowNull: false,
-      type:DataTypes.DATE,
-      defaultValue: DataTypes.NOW
+      type: DataTypes.DATE
     },
   }, {
     tableName: 'polls',
-    timestamps: false,
+    timestamps: true,
   });
 
-  Poll.associate = ({ User }) => {
+  Poll.associate = ({ User, Item}) => {
     Poll.belongsTo(User, {foreignKey: 'userId', as: 'user' })
+    Poll.hasMany(Item, {foreignKey: 'pollId', as: 'items' })
   };
 
   return Poll;

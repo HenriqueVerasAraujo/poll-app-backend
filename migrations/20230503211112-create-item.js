@@ -2,37 +2,34 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('polls', {
+    await queryInterface.createTable('items', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      pollTitle: {
+      itemTitle: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
-      userId: {
+      pollId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'users',
+          model: 'polls',
           key: 'id',
         },
         onDelete: 'CASCADE',
       },
-      createdAt: {
+      votes: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        defaultValue: 0,
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('polls');
+    await queryInterface.dropTable('items');
   }
 };
