@@ -2,7 +2,6 @@ const { Poll, Item} = require('../models');
 
 require('dotenv').config();
 
-
 const createPoll = async(body, userId) => {
     const { pollTitle, items } = body;
     
@@ -13,16 +12,21 @@ const createPoll = async(body, userId) => {
     return newPoll;
 };
 
-const fetchPoll = async(pollId, userId) => {
-    // const findPoll = await Poll.findOne
-};
-
 const fetchAllPolls = async(userId) => {
     const allPolls = await Poll.findAll({ where: { userId } });
     return allPolls;
 };
 
+const fetchOnePoll = async(pollId) => {
+    const singlePoll = await Poll.findOne({ where: { id: pollId } });
+    if (!singlePoll) {
+        return {errMessage: 'Poll not found'}
+    }
+    return singlePoll;
+};
+
 module.exports = {
     createPoll,
-    fetchAllPolls
+    fetchAllPolls,
+    fetchOnePoll,
 };

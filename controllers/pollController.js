@@ -26,7 +26,22 @@ const fetchAllPolls = async(req, res) => {
     };
 };
 
+const fetchOnePoll= async(req, res) => {
+    const { id } = req.params;
+    try{
+        const singlePoll = await pollService.fetchOnePoll(id);
+        if(singlePoll.errMessage) {
+            return res.json({ errMessage: singlePoll.errMessage });
+        };
+        return res.json(singlePoll);
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({error: err});
+    };
+};
+
 module.exports = {
     createPoll,
-    fetchAllPolls
+    fetchAllPolls,
+    fetchOnePoll
 };
