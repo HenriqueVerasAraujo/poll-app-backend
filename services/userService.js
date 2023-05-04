@@ -10,12 +10,12 @@ const loginUser = async(body) => {
     
     const validUser = await User.findOne({where: { email } });
     if (!validUser) {
-        return {errMessage: "Invalid Email."};
+        return {errMessage: 'Invalid Email or Password.'};
     };
 
     const comparePass = await bcrypt.compare(password, validUser.password);
     if (!comparePass) {
-        return { errMessage: 'Invalid password.' };
+        return { errMessage: 'Invalid Email or Password.' };
     };
 
     const token = jwt.sign({ 
