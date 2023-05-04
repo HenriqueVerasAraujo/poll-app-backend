@@ -12,6 +12,21 @@ const createPoll = async (req, res) => {
     };
 };
 
+const fetchAllPolls = async(req, res) => {
+    const userId = req.user.userId;
+    try{
+        const allPolls = await pollService.fetchAllPolls(userId);
+        if(allPolls.length > 0) {
+            return res.json(allPolls);
+        };
+        return res.json({errMessage: "Create a new Poll."});
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({error: err});
+    };
+};
+
 module.exports = {
     createPoll,
+    fetchAllPolls
 };

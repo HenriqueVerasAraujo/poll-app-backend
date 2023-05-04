@@ -6,5 +6,6 @@ const { tokenValidation } = require('../middlewares/tokenValidation');
 const router = Router();
 
 router.post('/create', tokenValidation, pollController.createPoll);
+router.get('/getAll', tokenValidation, pollController.fetchAllPolls);
 
 module.exports = router

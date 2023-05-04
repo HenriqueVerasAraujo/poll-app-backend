@@ -13,6 +13,16 @@ const createPoll = async(body, userId) => {
     return newPoll;
 };
 
+const fetchPoll = async(pollId, userId) => {
+    // const findPoll = await Poll.findOne
+};
+
+const fetchAllPolls = async(userId) => {
+    const allPolls = await Poll.findAll({ where: { userId } });
+    return allPolls;
+};
+
 module.exports = {
     createPoll,
+    fetchAllPolls
 };
