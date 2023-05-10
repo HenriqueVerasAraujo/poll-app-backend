@@ -8,11 +8,11 @@ const tokenValidation = async (req, res, next) => {
     try {
         if (!token) {
             return res.json({ message: 'Token not found' });
-        }
+        };
         const tokenVerify = jwt.verify(token, secret);
         if (!tokenVerify) {
             return res.json({ message: 'Expired or invalid token' });
-        }
+        };
         req.user = {
             userId: tokenVerify.id,
         };

@@ -22,6 +22,11 @@ module.exports = {
         },
         onDelete: 'CASCADE',
       },
+      pollStatus: {
+        type:Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 1
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

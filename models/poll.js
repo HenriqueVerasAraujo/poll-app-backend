@@ -19,6 +19,11 @@ const Poll = (sequelize, DataTypes) => {
       },
       onDelete: 'CASCADE',
     },
+    pollStatus: {
+      type:DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE

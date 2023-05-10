@@ -19,7 +19,7 @@ const fetchAllPolls = async(req, res) => {
         if(allPolls.length > 0) {
             return res.json(allPolls);
         };
-        return res.json({errMessage: "Create a new Poll."});
+        return res.json([]);
     } catch(err) {
         console.log(err);
         return res.status(500).json({error: err});
@@ -40,8 +40,20 @@ const fetchOnePoll= async(req, res) => {
     };
 };
 
+const pollStatusUpdate = async(req, res) => {
+    const { id } = req.params;
+    try{
+        const updatePoll = await pollService.pollStatusUpdate(id);
+        return res.json(updatePoll);
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({error: err});
+    };
+};
+
 module.exports = {
     createPoll,
     fetchAllPolls,
-    fetchOnePoll
+    fetchOnePoll,
+    pollStatusUpdate
 };

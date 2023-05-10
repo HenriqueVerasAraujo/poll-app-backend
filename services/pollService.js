@@ -36,8 +36,19 @@ const fetchOnePoll = async(pollId) => {
     return singlePoll;
 };
 
+const pollStatusUpdate = async(pollId) => {
+    await Poll.update(
+        {pollStatus: 2 },
+        { where: { id: pollId }}
+    );
+    const singlePoll = await Poll.findOne({ where: { id: pollId } });
+
+    return singlePoll;
+};
+
 module.exports = {
     createPoll,
     fetchAllPolls,
     fetchOnePoll,
+    pollStatusUpdate
 };
