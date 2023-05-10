@@ -8,5 +8,6 @@ router.post('/create', tokenValidation, pollController.createPoll);
 router.get('/getOne/:id', pollController.fetchOnePoll);
 router.get('/getAll', tokenValidation, pollController.fetchAllPolls);
 router.put('/status/:id', tokenValidation, pollController.pollStatusUpdate);
+router.delete('/delete/:id', tokenValidation, pollController.deletePoll);
 
 module.exports = router;

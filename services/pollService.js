@@ -46,9 +46,14 @@ const pollStatusUpdate = async(pollId) => {
     return singlePoll;
 };
 
+const deletePoll = async(pollId) => {
+    await Poll.destroy({ where: { id: pollId }});
+}
+
 module.exports = {
     createPoll,
     fetchAllPolls,
     fetchOnePoll,
-    pollStatusUpdate
+    pollStatusUpdate,
+    deletePoll
 };

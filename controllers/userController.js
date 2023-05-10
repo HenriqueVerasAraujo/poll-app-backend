@@ -8,7 +8,7 @@ const loginUser = async (req, res) => {
         if (tryLogin.errMessage) {
             return res.json({ errMessage: tryLogin.errMessage });
         };
-        return res.json({token: tryLogin.token});
+        return res.json({token: tryLogin.token, userId: tryLogin.userId });
     } catch(err) {
         console.log(err);
         return res.status(500).json({error: err});

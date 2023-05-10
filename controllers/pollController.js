@@ -51,9 +51,21 @@ const pollStatusUpdate = async(req, res) => {
     };
 };
 
+const deletePoll = async(req, res) => {
+    const { id } = req.params;
+    try{
+        await pollService.deletePoll(id);
+        return res.json('Poll deleted');
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({error: err});
+    };
+};
+
 module.exports = {
     createPoll,
     fetchAllPolls,
     fetchOnePoll,
-    pollStatusUpdate
+    pollStatusUpdate,
+    deletePoll,
 };

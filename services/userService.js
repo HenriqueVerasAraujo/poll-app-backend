@@ -8,7 +8,7 @@ const secret = process.env.JWT_SECRET;
 const loginUser = async(body) => {
     const { email, password } = body;
     
-    const validUser = await User.findOne({where: { email } });
+    const validUser = await User.findOne({ where: { email } });
     if (!validUser) {
         return {errMessage: 'Invalid Email or Password.'};
     };
@@ -24,7 +24,7 @@ const loginUser = async(body) => {
         email: validUser.email
      }, secret);
 
-     return { token };
+     return { token, userId: validUser.id };
 };
 
 const createUser = async(body) => {
