@@ -30,7 +30,18 @@ const createUser = async (req, res) => {
     };
 };
 
+const findAllUsers = async (req, res) => {
+    try{
+        const allUsers = await userService.findAllUsers();
+        return res.json(allUsers);
+    } catch(err) {
+        console.log(err);
+        return res.status(500).json({error: err});
+    };
+}
+
 module.exports = {
     loginUser,
-    createUser
+    createUser,
+    findAllUsers
 }

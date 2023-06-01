@@ -46,7 +46,13 @@ const createUser = async(body) => {
     return createNewUser;
 };
 
+const findAllUsers = async() => {
+    const allUsers = await User.findAll();
+    return allUsers;
+}
+
 module.exports = {
     loginUser,
-    createUser
+    createUser,
+    findAllUsers,
 };
