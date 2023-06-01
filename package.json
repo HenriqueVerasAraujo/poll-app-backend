@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+    "prestart": "npx sequelize-cli init && npx sequelize-cli db:create && npx sequelize-cli db:migrate",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
